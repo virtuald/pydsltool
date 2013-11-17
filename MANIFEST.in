@@ -1,0 +1,4 @@
+include requirements.txt
+graft examples
+graft src/tests
+prune src/tests/__pycache__

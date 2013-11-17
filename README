@@ -1,0 +1,115 @@
+pydsltool
+=========
+
+This is a library to aid developers in creating neat little embedded DSLs when
+using python, without having to do any complex parsing or anything like that.
+The resulting DSLs look a bit more like english than python does.
+
+The idea for this was inspired by some ruby stuff that I've been using lately.
+I've been using ruby quite a bit lately, and while I am still not a huge fan
+of the language, I do like the idea of easy to code up DSLs. Since I wanted
+a DSL for a python project I was working on, I played with a few ideas and
+ended up with this. 
+
+Usage
+=====
+
+First, create some very basic python objects, and pass a file containing
+dsltool. Here's a sample recipe DSL for baking:
+
+	author = 'Mom'
+	level = 'Easy'
+	
+	with Instructions('Yummy cookies'):
+	
+	    preheat_oven = '375F'
+	    	
+	    with Ingredients:
+	        add += '2 1/4 cups', 'flour'
+	        add += '1 tsp', 'baking soda'
+	        add += '1 tsp', 'salt'
+	        add += '1 cup', 'butter'
+	        add += '3/4 cup', 'sugar'
+	        add += '3/4 cup', 'brown sugar'
+	        add += '1 tsp', 'vanilla extract'
+	        add += '2', 'eggs'
+	        add += '2 cups', 'chocolate chips'
+	        add += '1 cup', 'nuts'
+	        
+And the implementation to parse that dsl is super simple:
+
+	import dsltool
+	
+	class Ingredients(object):
+    
+	    def __init__(self):
+	        self._items = []
+	    
+	    @property
+	    def add(self):
+	        return dsltool.add_to_list(self._items)
+	    
+	    @add.setter
+	    def add(self, value):
+	        self._items = value
+	
+	
+	class Instructions(object):
+	    preheat_oven = None
+	    
+	    ingredients = Ingredients
+	    steps = Steps
+	    
+	    def __init__(self, name):
+	        self.name = name
+	
+	
+	class Recipe(object):
+	
+	    author = None
+	    level = None
+	    
+	    def __init__(self):
+	        self.instructions = Instructions
+	        
+	 if __name__ == '__main__':
+	 	obj = dsltool.parse_dsl_file('cookies.pydsl', Recipe)
+
+
+There is a working example in the 'examples' directory. Check it out.
+
+Performance
+===========
+
+No idea. I'm sure it's not that bad. I imagine typical usage of a DSL
+isn't going to be in a performance-dependent part of your application
+anyways.
+
+Gotchas
+=======
+
+If the user writes the DSL incorrectly, there are lots of possible gotchas. 
+If enough people use this thing and file bug reports, together we can
+remove many of them. I'll try to list them as I find them.
+
+Testing
+=======
+
+Uses py.test for testing. Still need better tests, but it catches a lot 
+of common mistakes I've made so far. ;)
+
+Contributing
+============
+
+It's all on github, so file your bug reports there. If you have a patch, 
+the best way to do it is just create a fork and send me a pull request. 
+If you don't include a test case for your patch (these are really easy to
+create!), then it probably won't be accepted.  
+
+https://github.com/virtuald/pydsltool
+
+
+Author
+======
+
+Author:: Dustin Spicuzza (dustin@virtualroadside.com)

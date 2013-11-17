@@ -1,0 +1,10 @@
+# Python
+*.pyc
+build
+dist
+MANIFEST
+__pycache__
+
+# Eclipse
+.project
+.pydevproject

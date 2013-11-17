@@ -1,0 +1,32 @@
+#
+# Recipe to make cookies using a custom DSL
+#
+
+author = 'Mom'
+level = 'Easy'
+
+with Instructions('Yummy cookies'):
+
+    preheat_oven = '375F'
+    	
+    with Ingredients:
+        add += '2 1/4 cups', 'flour'
+        add += '1 tsp', 'baking soda'
+        add += '1 tsp', 'salt'
+        add += '1 cup', 'butter'
+        add += '3/4 cup', 'sugar'
+        add += '3/4 cup', 'brown sugar'
+        add += '1 tsp', 'vanilla extract'
+        add += '2', 'eggs'
+        add += '2 cups', 'chocolate chips'
+        add += '1 cup', 'nuts'
+    
+    with Steps:
+        combine('flour', 'baking soda', 'salt')
+        beat('butter', 'sugar', 'vanilla', 'eggs')
+        mix('small_bowl', 'large_bowl', 'chocolate chips')
+        drop_onto('pan')
+        bake('15 minutes')
+
+with Instructions('Bad cookies'):
+	pass
