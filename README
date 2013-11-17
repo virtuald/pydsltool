@@ -72,8 +72,8 @@ And the implementation to parse that dsl is super simple::
 	    def __init__(self):
 	        self.instructions = Instructions
 	        
-	 if __name__ == '__main__':
-        obj = dsltool.parse_dsl_file('cookies.pydsl', Recipe)
+	if __name__ == '__main__':
+	    obj = dsltool.parse_dsl_file('cookies.pydsl', Recipe)
 
 
 There is a working example in the 'examples' directory. Check it out.
