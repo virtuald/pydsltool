@@ -15,7 +15,7 @@ Usage
 =====
 
 First, create some very basic python objects, and pass a file containing
-dsltool. Here's a sample recipe DSL for baking:
+dsltool. Here's a sample recipe DSL for baking::
 
 	author = 'Mom'
 	level = 'Easy'
@@ -36,7 +36,7 @@ dsltool. Here's a sample recipe DSL for baking:
 	        add += '2 cups', 'chocolate chips'
 	        add += '1 cup', 'nuts'
 	        
-And the implementation to parse that dsl is super simple:
+And the implementation to parse that dsl is super simple::
 
 	import dsltool
 	
