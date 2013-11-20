@@ -1,8 +1,8 @@
 
 import inspect
 
-from helpers import list_of
-from utils import camelToSnake
+from .helpers import list_of
+from .utils import camelToSnake
 
 
 class DslExecError(Exception):
