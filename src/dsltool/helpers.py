@@ -22,7 +22,7 @@ class ItemList(list):
                 
         Result:
         
-            foo.items = ['item1', 'item2']
+            foo.items == ['item1', 'item2']
     '''
     def __iadd__(self, item):
         self.append(item)
