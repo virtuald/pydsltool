@@ -14,8 +14,9 @@ ended up with this.
 Usage
 =====
 
-First, create some very basic python objects, and pass a file containing
-dsltool. Here's a sample recipe DSL for baking::
+First, create some very basic python objects, and call the parse_dsl function
+or parse_dsl_file function with the file to process, and an object that the
+DSL is executed with. Here's a sample recipe DSL for baking::
 
 	author = 'Mom'
 	level = 'Easy'
@@ -43,15 +44,7 @@ And the implementation to parse that dsl is super simple::
 	class Ingredients(object):
     
 	    def __init__(self):
-	        self._items = []
-	    
-	    @property
-	    def add(self):
-	        return dsltool.add_to_list(self._items)
-	    
-	    @add.setter
-	    def add(self, value):
-	        self._items = value
+	        self.add = dsltool.ItemList()
 	
 	
 	class Instructions(object):

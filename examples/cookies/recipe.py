@@ -13,24 +13,9 @@ import dsltool
 class Ingredients(object):
     
     def __init__(self):
-        self._items = []
-    
-    @property
-    def add(self):
-        '''
-            Uses a utility that gives the DSL a syntax to add to a list:
-            
-                with Ingredients:
-                    add += 'item'
-                    ...
-            
-        '''
-        return dsltool.add_to_list(self._items)
-    
-    @add.setter
-    def add(self, value):
-        self._items = value
 
+        # special list that allows += to add items
+        self.add = dsltool.ItemList()
 
 class Steps(object):
     '''Example of how to record whatever the user throws at you'''
@@ -91,7 +76,7 @@ if __name__ == '__main__':
         print '  Ingredients:'
         
         if instructions.ingredients is not None:
-            for quantity, ingredient in instructions.ingredients._items:
+            for quantity, ingredient in instructions.ingredients.add:
                 print '    %s %s' % (quantity, ingredient)
     
         print '  Steps:'

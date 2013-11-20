@@ -6,25 +6,10 @@
 import dsltool
 from inspect import cleandoc
 
-import pytest
-
 #
 # DSL Objects
 #
 
-
-class AddDsl(object):
-    
-    _items = []
-    
-    @property 
-    def items(self):
-        return dsltool.add_to_list(self._items)
-    
-    @items.setter
-    def items(self, value):
-        self._items = value
-        
 
 class ChildDsl(object):
     child_var = None
@@ -34,26 +19,31 @@ class ListOfDsl(object):
     
     def __init__(self):
         self.child_dsl = dsltool.list_of(ChildDsl)
-
+        
+class ItemListDsl(object):
+    def __init__(self):
+        self.items = dsltool.helpers.ItemList()
+    
 #
-# Test add_to_list
+# Test item_list_property
 #
 
-def test_addto_0():
+def test_item_list_0():
     dsl_contents = cleandoc('''
     ''')
     
-    result = dsltool.parse_dsl(dsl_contents, AddDsl)
-    assert result._items == []
+    result = dsltool.parse_dsl(dsl_contents, ItemListDsl)
+    assert result.items == []
 
-def test_addto_1():
+def test_item_list_1():
     dsl_contents = cleandoc('''
         items += 1
         items += 2 
     ''')
     
-    result = dsltool.parse_dsl(dsl_contents, AddDsl)
-    assert result._items == [1,2]
+    result = dsltool.parse_dsl(dsl_contents, ItemListDsl)
+    assert result.items == [1,2]
+
     
 #
 # Test list_of

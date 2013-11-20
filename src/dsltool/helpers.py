@@ -4,39 +4,29 @@
 #
 
 
-
-class add_to_list(object):
+class ItemList(list):
     '''
-        Useful for implementing the += operation in your DSL. 
-        
+        A list that allows adding items to it via the += operator.
+                
         DSL Implementation Object Usage:
         
             class Foo(object):
+                def __init__(self):
+                    self.items = ItemList()
                 
-                _items = []
-                
-                @property
-                def items(self):
-                    return dsltool.add_to_list(self._items)
-                
-                @add.setter
-                def items(self, value):
-                    self._items = value
-                
-        DSL End User Usage:
+        DSL usage:
         
             with Foo:
-                add += 'item'
+                items += 'item1'
+                items += 'item2
+                
+        Result:
         
+            foo.items = ['item1', 'item2']
     '''
-    
-    def __init__(self, lst):
-        self.lst = lst
-        
     def __iadd__(self, item):
-        self.lst.append(item)
-        return self.lst
-    
+        self.append(item)
+        return self
     
 class list_of(list):
     '''
