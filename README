@@ -92,6 +92,10 @@ If the user writes the DSL incorrectly, there are lots of possible gotchas.
 If enough people use this thing and file bug reports, together we can
 remove many of them. I'll try to list them as I find them.
 
+Do not expect 0.1.x releases to have a stable API. I'm still exploring the
+possibilities of this, so as better ways to do things emerge newer releases
+will have those instead. 
+
 Testing
 =======
 
