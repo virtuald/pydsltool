@@ -7,8 +7,13 @@ packages = [
     'dsltool',
 ]
 
+def get_version():
+    g = {}
+    execfile(join(dirname(__file__), 'src', 'dsltool', 'version.py'), g)
+    return g['__version__']
+
 setup(name='pydsltool',
-      version='0.1.0',
+      version=get_version(),
       description='A library to enable making simple domain specific languages',
       long_description=open(join(dirname(__file__), 'README'), 'r').read(),
       author='Dustin Spicuzza',
